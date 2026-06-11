@@ -1,0 +1,32 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#1e1a20;
+    color:white;
+    overflow-x:hidden;
+}
+
+.webgl{
+    position:fixed;
+    top:0;
+    left:0;
+    outline:none;
+}
+
+.section{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:4rem;
+    position:relative;
+    z-index:1;
+}
