@@ -3,6 +3,11 @@ uniform float uBigWavesElavation;
 uniform vec2 uBigWavesFrequency;
 uniform float uBigWavesSpeed;
 
+uniform float uSmallWavesElavation;
+uniform float uSmallWavesFrequency;
+uniform float uSmallWavesSpeed;
+uniform float uSmallWavesIteration;
+
 varying float vElavation;
 
 //	Classic Perlin 3D Noise 
@@ -88,7 +93,15 @@ void main(){
                       sin(modelPosition.z * uBigWavesFrequency.y + uTime + uBigWavesSpeed) * 
                       uBigWavesElavation;
 
-    elavation += cnoise(vec3(modelPosition.xz * 3.0, uTime * 0.2)) * 0.15;
+    for(float i = 1.0 ; i <= uSmallWavesIteration; i++){
+      elavation -= abs(
+        cnoise(
+          vec3(
+            modelPosition.xz * uSmallWavesFrequency * i, uTime * uSmallWavesSpeed)
+          ) * uSmallWavesElavation / i
+        );
+    };               
+
     modelPosition.y += elavation;
 
     vec4 viewPosition = viewMatrix * modelPosition ;

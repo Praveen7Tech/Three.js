@@ -35,9 +35,15 @@ const material = new THREE.ShaderMaterial({
     fragmentShader:waterFragmentShader,
     uniforms:{
         uTime: {value: 0},
+
         uBigWavesElavation: {value: 0.2},
         uBigWavesFrequency: {value: new THREE.Vector2(4, 1.5)},
         uBigWavesSpeed: {value: 0.75},
+
+        uSmallWavesElavation : {value: 0.15},
+        uSmallWavesFrequency: {value: 3},
+        uSmallWavesSpeed: {value: 0.2},
+        uSmallWavesIteration: {value: 4},
         
         uDepthColor: {value: new THREE.Color(debugObject.depthColor)},
         uSurfaceColor: {value: new THREE.Color(debugObject.surfaceColor)},
@@ -51,6 +57,11 @@ gui.add(material.uniforms.uBigWavesElavation, 'value').min(0).max(1).step(0.001)
 gui.add(material.uniforms.uBigWavesFrequency.value, 'x').min(0).max(10).step(0.001).name("uBigWavesFrequencyX")
 gui.add(material.uniforms.uBigWavesFrequency.value, 'y').min(0).max(10).step(0.001).name("uBigWavesFrequencyY")
 gui.add(material.uniforms.uBigWavesSpeed, 'value').min(0).max(4).step(0.001).name("uBigWavesSpeed")
+
+gui.add(material.uniforms.uSmallWavesElavation, 'value').min(0).max(1).step(0.001).name("uSmallWavesElavation")
+gui.add(material.uniforms.uSmallWavesFrequency, 'value').min(0).max(30).step(0.001).name("uSmallWavesFrequency")
+gui.add(material.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name("uSmallWavesSpeed")
+gui.add(material.uniforms.uSmallWavesIteration, 'value').min(0).max(8).step(1).name("uSmallWavesIteration")
 
 gui.addColor(debugObject, "depthColor").onChange(()=> {
     material.uniforms.uDepthColor.value.set(debugObject.depthColor)
